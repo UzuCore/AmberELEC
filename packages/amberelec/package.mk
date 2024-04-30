@@ -21,7 +21,7 @@ else
                   sameboy sameduck scummvm smsplus-gx snes9x snes9x2002 snes9x2005_plus snes9x2010 stella stella-2014 swanstation tgbdual theodore tic-80 uae4arm uw8 uzem vbam vba-next vecx vice vircon32 \
                   virtualjaguar wasm4 xmil"
 
-  LIBRETRO_CORES_EXTRA="beetle_snes bsnes bsnes2014_balanced bsnes2014_performance bsnes_mercury_balanced bsnes_mercury_performance geolith mesen mesen-s"
+  LIBRETRO_CORES_EXTRA="beetle_snes bsnes bsnes2014_balanced bsnes2014_performance bsnes_mercury_balanced bsnes_mercury_performance geolith mesen mesen-s melonds melondsds"
 
   PKG_EMUS="${LIBRETRO_CORES}"
 
@@ -52,6 +52,9 @@ makeinstall_target() {
     for CORE in ${LIBRETRO_CORES_EXTRA}; do
       if [[ $CORE == "geolith" ]]; then
         sed -i "s|<extension>.neo .7z .zip</extension>|<extension>.7z .zip</extension>|g" ${INSTALL}/usr/config/emulationstation/es_systems.cfg
+      fi
+      if [[ $CORE == "melonds" ]]; then
+        sed -i -e '/<emulator name/{:a;N;/<\/emulator>/!ba;/melonds/d}' ${INSTALL}/usr/config/emulationstation/es_systems.cfg
       fi
       sed -i "s|<core>$CORE</core>||g" ${INSTALL}/usr/config/emulationstation/es_systems.cfg
       sed -i '/^[[:space:]]*$/d' ${INSTALL}/usr/config/emulationstation/es_systems.cfg
