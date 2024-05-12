@@ -50,10 +50,10 @@ if [[ "$LAST_UPDATE_VERSION" -le "20240506" ]]; then
   echo 'menu_widget_scale_factor = "1.250000"' >> ${RACONF}
 fi
 
-## 2024-05-09
-## Delete global.powersave setting
-if [[ "$LAST_UPDATE_VERSION" -le "20240509" ]]; then
-  sed -i "/global.powersave=/d" ${CONF}
+## 2024-05-10
+## Delete global.powersave_es setting
+if [[ "$LAST_UPDATE_VERSION" -le "20240510" ]]; then
+  sed -i "/global.powersave_es=/d" ${CONF}
 fi
 
 ## 2024-05-06
